@@ -1,6 +1,6 @@
-//*****************************************************************
-//* Extract ADPCM from a AIFF file (CD-I)
-//*****************************************************************
+/*****************************************************************
+* Extract ADPCM from a AIFF file (CD-I)
+*****************************************************************/
 
 #include <stdint.h>
 #include <stdio.h>
@@ -154,7 +154,7 @@ void DecodeADPCM(BYTE *Buffer)
 				Buffer		+= 2;
 				DataSize	-= 2;
 
-				// Skip WORD
+				/* Skip WORD */
 				Buffer		+= 2;
 				DataSize	-= 2;
 
@@ -162,7 +162,7 @@ void DecodeADPCM(BYTE *Buffer)
 				Buffer		+= 2;
 				DataSize	-= 2;
 
-				// Skip last 6 bytes
+				/* Skip last 6 bytes */
 				Buffer		+= 6;
 				DataSize	-= 6;
 

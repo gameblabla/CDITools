@@ -1,0 +1,5 @@
+*.o
+*.a
+BMPToCDI
+ExtractADPCM
+PadFile

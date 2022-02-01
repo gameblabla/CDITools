@@ -1,6 +1,8 @@
-//*****************************************************************
-//* BMP to CD-I 4/7 bit converter. (Paletted)
-//*****************************************************************
+/*
+****************************************************************
+* BMP to CD-I 4/7 bit converter. (Paletted)
+****************************************************************
+*/
 
 #include <stdint.h>
 #include <stdio.h>
@@ -112,15 +114,16 @@ BOOL Convert(char *Filename)
 {
 	BYTE	*Buffer	= Bank;
 	BYTE	*Image	= BMPBuffer;
+	DWORD YLoop, XLoop;
 
 	if (FALSE == LoadBMP(Filename, BMPBuffer, BMPPalette))
 	{
 		return	FALSE;
 	}
 
-	for (DWORD YLoop = 0; YLoop < Height; YLoop++)
+	for (YLoop = 0; YLoop < Height; YLoop++)
 	{
-		for (DWORD XLoop = 0; XLoop < Width / 2; XLoop++)
+		for (XLoop = 0; XLoop < Width / 2; XLoop++)
 		{
 			if (16 == NumColors)
 			{
@@ -155,8 +158,10 @@ void WriteBitmap(char *Filename)
 {
 	FILE	*Handle;
 	DWORD	Index	= 0;
-
-	for (DWORD Loop = 0; Loop < NumColors; Loop++)
+	DWORD Loop;
+	BYTE	Red, Green, Blue;
+	
+	for (Loop = 0; Loop < NumColors; Loop++)
 	{
 		if (0 == Loop || 64 == Loop)
 		{
@@ -166,9 +171,9 @@ void WriteBitmap(char *Filename)
 			BankIndex++;
 		}
 
-		BYTE	Red		= BMPPalette[Loop * 3];
-		BYTE	Green	= BMPPalette[Loop * 3 + 1];
-		BYTE	Blue	= BMPPalette[Loop * 3 + 2];
+		Red		= BMPPalette[Loop * 3];
+		Green	= BMPPalette[Loop * 3 + 1];
+		Blue	= BMPPalette[Loop * 3 + 2];
 
 		Palette[Index]	= DWORDSwap((0x80000000 | ((Loop % 64) << 24) | ((DWORD)Red  << 16) | ((DWORD)Green << 8) | (DWORD)Blue));
 

@@ -1,5 +1,5 @@
 PREFIX		= /usr/local
-CFLAGS		= -O2 -Wno-multichar -std=gnu99
+CFLAGS		= -O2 -std=c89
 LDFLAGS     = -lc -lgcc -lm
 
 all: BMPToCDI ExtractADPCM PadFile
